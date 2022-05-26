@@ -39,8 +39,17 @@ const forwardRenderCharactersByFilter = async () => {
 
 findBtn.addEventListener('click', forwardRenderCharactersByFilter);
 
-const getCharacters  = (сharacterNameInput = '') => {
+const getCharacters  = async (сharacterNameInput = '') => {
   // todo: implement this method
   // endpoint - `https://my-got-api.herokuapp.com/${сharacterNameInput}`;
+  const fetchUrl = `https://my-got-api.herokuapp.com/${сharacterNameInput}`;
+  try {
+    const response = await fetch(fetchUrl); 
+    if (response.ok) {
+      const jsonResponse = await response.json();
+      return jsonResponse;
+    }
+  } catch(err) {
+    console.log(err)};
   return [];
 }
